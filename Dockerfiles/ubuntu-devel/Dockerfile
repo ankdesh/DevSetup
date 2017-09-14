@@ -1,6 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y \
+  sudo \
   git \
   vim \
   gcc \
@@ -10,13 +11,15 @@ RUN apt-get update && apt-get install -y \
   python-pip
 
 RUN useradd -ms /bin/bash ankdesh
+RUN echo ankdesh:ankdesh@123 | chpasswd
+RUN adduser ankdesh sudo
 
 USER ankdesh
 WORKDIR /home/ankdesh
 
 # Basic ankdesh type setup
-RUN wget https://github.com/ankdesh/DevSetup/blob/master/scripts/setup_git.sh
-RUN wget https://github.com/ankdesh/DevSetup/blob/master/scripts/setup_rc.sh
+RUN wget https://raw.githubusercontent.com/ankdesh/DevSetup/master/scripts/setup_git.sh
+RUN wget https://raw.githubusercontent.com/ankdesh/DevSetup/master/scripts/setup_rc.sh
 
 RUN bash setup_git.sh
 RUN bash setup_rc.sh
