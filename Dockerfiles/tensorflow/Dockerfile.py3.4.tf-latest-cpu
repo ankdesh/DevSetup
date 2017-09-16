@@ -1,0 +1,18 @@
+FROM jupyter/minimal-notebook
+
+MAINTAINER Ankur Deshwal <a.s.deshwal@gmail.com>
+
+USER $NB_USER
+
+RUN conda create -n condaenv-py3.4 python=3.4 -y
+
+ENV PATH /opt/conda/envs/condaenv-py3.4/bin
+
+RUN pip --no-cache-dir install \
+        numpy \
+        matplotlib \
+        scipy \
+        scikit-image \
+        scikit-learn
+
+RUN pip install tensorflow
