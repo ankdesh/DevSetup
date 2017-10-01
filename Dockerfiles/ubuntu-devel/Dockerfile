@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
   wget \
   screen \
   python-pip
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash ankdesh
 RUN echo ankdesh:ankdesh@123 | chpasswd
