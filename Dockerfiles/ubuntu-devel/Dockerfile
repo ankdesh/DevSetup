@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
   g++ \
   ipython \
   wget \
+  screen \
   python-pip
 
 RUN useradd -ms /bin/bash ankdesh
