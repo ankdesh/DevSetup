@@ -2,16 +2,7 @@ FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
 MAINTAINER Ankur Deshwal <a.s.deshwal@gmail.com>
 
-RUN apt-get update && apt-get install -y sudo
-
-RUN useradd -ms /bin/bash ankdesh
-RUN echo ankdesh:ankdesh@123 | chpasswd
-RUN adduser ankdesh sudo
-
-USER ankdesh
-WORKDIR /home/ankdesh
-
-RUN sudo apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
         python3-pip \
         python3-dev \
     && \
