@@ -13,8 +13,10 @@ RUN apt-get update && apt-get install -y \
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash ankdesh
-RUN echo ankdesh:ankdesh@123 | chpasswd
 RUN adduser ankdesh sudo
+RUN sed -i.bkp -e \
+      's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' \
+      /etc/sudoers
 
 USER ankdesh
 WORKDIR /home/ankdesh
