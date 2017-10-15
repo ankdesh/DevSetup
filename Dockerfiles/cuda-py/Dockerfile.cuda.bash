@@ -1,12 +1,14 @@
-FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn6-runtime-ubuntu16.04
 
 MAINTAINER Ankur Deshwal <a.s.deshwal@gmail.com>
 
 RUN apt-get update && apt-get install -y sudo
 
 RUN useradd -ms /bin/bash ankdesh
-RUN echo ankdesh:ankdesh@123 | chpasswd
 RUN adduser ankdesh sudo
+RUN sed -i.bkp -e \
+      's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' \
+      /etc/sudoers
 
 RUN apt-get update && apt-get install -y \
         python3-pip \
