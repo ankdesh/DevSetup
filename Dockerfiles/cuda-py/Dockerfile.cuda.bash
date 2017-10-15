@@ -54,4 +54,14 @@ RUN pip install -U distribute \
         pip \
         virtualenv
 
+# Basic ankdesh type setup
+RUN wget https://raw.githubusercontent.com/ankdesh/DevSetup/master/scripts/setup_git.sh
+RUN wget https://raw.githubusercontent.com/ankdesh/DevSetup/master/scripts/setup_rc.sh
+
+RUN bash setup_git.sh
+RUN bash setup_rc.sh
+
+RUN rm setup_git.sh
+RUN rm setup_rc.sh
+
 CMD ["/bin/bash"]
