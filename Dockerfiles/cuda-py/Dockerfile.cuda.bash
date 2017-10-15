@@ -24,19 +24,7 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY jupyter_notebook_config.py /root/.jupyter/
-
-# Jupyter has issues with being run directly:
-# https://github.com/ipython/ipython/issues/7062
-# We just add a little wrapper script.
-COPY run_jupyter.sh /
-
-# Something Jupyter suggests to do:
-# http://jupyter-notebook.readthedocs.io/en/latest/public_server.html#docker-cmd
-ENV TINI_VERSION v0.9.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
-ENTRYPOINT ["/tini", "--"]
+COPY jupyter_notebook_config.py /home/ankdesh/.jupyter/
 
 # jupyter
 EXPOSE 8888
