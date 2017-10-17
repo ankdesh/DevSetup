@@ -31,6 +31,7 @@ USER ankdesh
 WORKDIR /home/ankdesh
 
 COPY jupyter_notebook_config.py /home/ankdesh/.jupyter/
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/nvidia/lib64/"
 
 RUN pip3 install -U distribute \
         setuptools \
