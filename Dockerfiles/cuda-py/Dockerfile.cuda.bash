@@ -24,13 +24,13 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY jupyter_notebook_config.py /home/ankdesh/.jupyter/
-
 # jupyter
 EXPOSE 8888
 
 USER ankdesh
 WORKDIR /home/ankdesh
+
+COPY jupyter_notebook_config.py /home/ankdesh/.jupyter/
 
 RUN pip3 install -U distribute \
         setuptools \
