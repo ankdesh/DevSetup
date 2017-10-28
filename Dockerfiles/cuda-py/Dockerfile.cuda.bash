@@ -1,8 +1,16 @@
-FROM nvidia/cuda:8.0-cudnn6-runtime-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
 MAINTAINER Ankur Deshwal <a.s.deshwal@gmail.com>
 
-RUN apt-get update && apt-get install -y sudo
+RUN apt-get update && apt-get install -y \
+  sudo \
+  git \
+  vim \
+  gcc \
+  g++ \
+  wget \
+  screen 
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash ankdesh
 RUN adduser ankdesh sudo
@@ -41,6 +49,7 @@ RUN pip install -U distribute \
         setuptools \
         pip \
         virtualenv
+
 
 # Basic ankdesh type setup
 RUN wget https://raw.githubusercontent.com/ankdesh/DevSetup/master/scripts/setup_git.sh
