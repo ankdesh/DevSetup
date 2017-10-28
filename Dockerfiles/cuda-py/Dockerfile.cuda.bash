@@ -52,4 +52,6 @@ RUN bash setup_rc.sh
 RUN rm setup_git.sh
 RUN rm setup_rc.sh
 
+RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/nvidia/lib64/:/usr/local/nvidia/lib/:/usr/local/cuda/lib64/" >> ~/.bashrc
+
 CMD ["/bin/bash"]
