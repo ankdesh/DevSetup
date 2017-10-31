@@ -13,7 +13,7 @@ RUN sed -i.bkp -e \
 USER ankdesh
 WORKDIR /home/ankdesh
 
-RUN sudo apt-get update && apt-get install -y \
+RUN sudo apt-get update && sudo apt-get install -y \
         python3-pip \
         python3-dev \
     && \
