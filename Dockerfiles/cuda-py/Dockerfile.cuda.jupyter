@@ -20,17 +20,17 @@ RUN sudo apt-get update && sudo apt-get install -y \
     sudo apt-get clean && \
     sudo rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install -U distribute \
+RUN sudo pip3 install -U distribute \
         setuptools \
         pip
 
-RUN pip3 --no-cache-dir install \
+RUN sudo pip3 --no-cache-dir install \
         ipykernel
-RUN pip3 --no-cache-dir install \
+RUN sudo pip3 --no-cache-dir install \
         jupyter
 RUN python3 -m ipykernel.kernelspec
 
-COPY jupyter_notebook_config.py /root/.jupyter/
+COPY sudo jupyter_notebook_config.py /home/ankdesh/.jupyter/
 
 # Jupyter has issues with being run directly:
 # https://github.com/ipython/ipython/issues/7062
@@ -47,8 +47,5 @@ ENTRYPOINT ["/tini", "--"]
 # jupyter
 EXPOSE 8888
 EXPOSE 8889
-
-RUN mkdir "/virtualenvs"
-WORKDIR "/notebooks"
 
 CMD ["jupyter", "notebook", "--allow-root"]
