@@ -28,9 +28,9 @@ RUN sudo pip3 --no-cache-dir install \
         ipykernel
 RUN sudo pip3 --no-cache-dir install \
         jupyter
-RUN python3 -m ipykernel.kernelspec
+RUN sudo python3 -m ipykernel.kernelspec
 
-COPY sudo jupyter_notebook_config.py /home/ankdesh/.jupyter/
+COPY jupyter_notebook_config.py /home/ankdesh/.jupyter/
 
 # Jupyter has issues with being run directly:
 # https://github.com/ipython/ipython/issues/7062
@@ -41,7 +41,7 @@ COPY run_jupyter.sh /
 # http://jupyter-notebook.readthedocs.io/en/latest/public_server.html#docker-cmd
 ENV TINI_VERSION v0.9.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
+RUN sudo chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
 # jupyter
