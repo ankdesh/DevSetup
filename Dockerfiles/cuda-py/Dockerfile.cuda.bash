@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
   gcc \
   g++ \
   wget \
-  screen 
+  screen \
+  virtualenv
+
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash ankdesh
@@ -18,20 +20,6 @@ RUN sed -i.bkp -e \
       's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' \
       /etc/sudoers
 
-RUN apt-get update && apt-get install -y \
-        python3-pip \
-        python3-dev \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y \
-        python-pip \
-        python-dev \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 # jupyter
 EXPOSE 8888
 
@@ -39,17 +27,6 @@ USER ankdesh
 WORKDIR /home/ankdesh
 
 COPY jupyter_notebook_config.py /home/ankdesh/.jupyter/
-
-RUN pip3 install -U distribute \
-        setuptools \
-        pip \
-        virtualenv
-
-RUN pip install -U distribute \
-        setuptools \
-        pip \
-        virtualenv
-
 
 # Basic ankdesh type setup
 RUN wget https://raw.githubusercontent.com/ankdesh/DevSetup/master/scripts/setup_git.sh
