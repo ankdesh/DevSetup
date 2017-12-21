@@ -25,6 +25,8 @@ EXPOSE 8888
 USER ankdesh
 WORKDIR /home/ankdesh
 
+COPY jupyter_notebook_config.py /home/ankdesh/.jupyter/
+
 # Basic ankdesh type setup
 RUN wget https://raw.githubusercontent.com/ankdesh/DevSetup/master/scripts/setup_git.sh
 RUN wget https://raw.githubusercontent.com/ankdesh/DevSetup/master/scripts/setup_rc.sh
