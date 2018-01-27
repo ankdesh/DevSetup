@@ -2,6 +2,8 @@ FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
 MAINTAINER Ankur Deshwal <a.s.deshwal@gmail.com>
 
+ARG UID=1001
+
 RUN apt-get update && apt-get install -y \
   sudo \
   git \
@@ -14,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN useradd -ms /bin/bash ankdesh
+RUN useradd -ms /bin/bash ankdesh -u $UID
 RUN adduser ankdesh sudo
 RUN sed -i.bkp -e \
       's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' \
