@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ARG HOST_UID=1000
+ARG UID=1000
 
 RUN apt-get update && apt-get install -y \
   sudo \
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
   virtualenv
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN useradd -ms /bin/bash ankdesh --uid $HOST_UID
+RUN useradd -ms /bin/bash ankdesh --uid $UID
 RUN adduser ankdesh sudo
 RUN sed -i.bkp -e \
       's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' \
