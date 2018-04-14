@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
   g++ \
   wget \
   screen \
+  python3 \
   virtualenv
 
 RUN rm -rf /var/lib/apt/lists/*
