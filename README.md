@@ -4,7 +4,7 @@ This repo contains scripts, dockerfiles etc to set up my preferred environment q
 ## Docker setup
 * Create a new docker image
 ```sh
-docker build -t <image-name> [-f dockerfileName] .
+docker build --build-arg baserepo=<baserepo> -t <image-name> [-f dockerfileName] .
 ```
 * Run dockerfile with mappings
 ```sh
